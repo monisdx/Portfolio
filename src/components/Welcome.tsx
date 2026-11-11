@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 const FONT_WEIGHTS = {
-    subtitle: {min:200, max:400, default:200},
+    subtitle: {min:200, max:500, default:200},
     title: {min:400, max:900, default:400}
 }
 
