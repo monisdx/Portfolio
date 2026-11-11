@@ -1,11 +1,18 @@
 import { useRef } from "react"
-import { Tooltip } from "react-tooltip";
 import gsap from "gsap";
 import { dockApps } from "../constants";
 import { useGSAP } from "@gsap/react";
+import { Tooltip } from "react-tooltip";
+import useWindowStore from "../store/window";
+import { WINDOW_CONFIG } from "../constants";
 
+
+type WindowKey = keyof typeof WINDOW_CONFIG;
+
+type DockApp = { id: string; canOpen: boolean };
 
 export default function Dock() {
+    const { openWindow, closeWindow, windows } = useWindowStore();
     const dockRef = useRef<HTMLDivElement>(null);
 
     useGSAP(()=>{
@@ -60,7 +67,19 @@ export default function Dock() {
 
     },[])
 
-    function toggleApp(app: {id:string, canOpen:boolean}){}
+    function toggleApp(app: DockApp){
+        if(!app.canOpen) return;
+
+        const key = app.id as WindowKey;
+        const win = windows[key];
+
+        if(win.isOpen){
+            closeWindow(key);
+        }
+        else{
+            openWindow(key)
+        }
+    }
 
   return (
     <section id="dock">
