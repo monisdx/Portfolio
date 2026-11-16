@@ -11,6 +11,8 @@ import Finder from "./windows/Finder";
 import Text from "./windows/Text";
 import Image from "./windows/Image";
 import { Contact } from "lucide-react";
+import Home from "./components/Home";
+import Photos from "./windows/Photos";
 
 gsap.registerPlugin(Draggable, useGSAP);
 
@@ -28,6 +30,9 @@ export default function App() {
       <Text/>
       <Image/>
       <Contact/>
+      <Photos/>
+      
+      <Home/>
     </main>
   )
 }
