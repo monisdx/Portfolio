@@ -11,7 +11,7 @@ type ChildItem = LocationValue["children"][number];
 type ListItem = LocationValue | ChildItem;
 
 function Finder() {
-  const { openWindow } = useWindowStore();  
+  const { openWindow } = useWindowStore();
   const { activeLocation, setActiveLocation } = useLocationStore();
 
   function renderList(name: string, items: ListItem[]) {
@@ -36,19 +36,20 @@ function Finder() {
     );
   }
 
-  function openItem(item: ChildItem){
-    if("fileType" in item && item.fileType === "pdf") return openWindow("resume");
-    if(item.kind === "folder") return setActiveLocation(item);
-    if("fileType" in item && "href" in item){
-        const fileType = item.fileType as string;
-        const href = item.href as string;
-        if(["fig", "url"].includes(fileType) && href)
-            return window.open(href, "_blank");
+  function openItem(item: ChildItem) {
+    if ("fileType" in item && item.fileType === "pdf")
+      return openWindow("resume");
+    if (item.kind === "folder") return setActiveLocation(item);
+    if ("fileType" in item && "href" in item) {
+      const fileType = item.fileType as string;
+      const href = item.href as string;
+      if (["fig", "url"].includes(fileType) && href)
+        return window.open(href, "_blank");
     }
-    if("fileType" in item && item.fileType === "txt")
-        return openWindow("txtfile", item as Record<string, unknown>);
-    if("fileType" in item && item.fileType === "img")
-        return openWindow("imgfile", item as Record<string, unknown>);
+    if ("fileType" in item && item.fileType === "txt")
+      return openWindow("txtfile", item as Record<string, unknown>);
+    if ("fileType" in item && item.fileType === "img")
+      return openWindow("imgfile", item as Record<string, unknown>);
   }
 
   return (
@@ -60,24 +61,23 @@ function Finder() {
 
       <div className="bg-white flex h-full">
         <div className="sidebar">
-          {renderList("Favorites",Object.values(locations))}
+          {renderList("Favorites", Object.values(locations))}
           {renderList("My Projects", locations.work.children)}
         </div>
         <ul className="content">
-            {activeLocation && "children" in activeLocation && activeLocation.children.map((item)=>(
-                <li
+          {activeLocation &&
+            "children" in activeLocation &&
+            activeLocation.children.map((item) => (
+              <li
                 key={item.id}
                 className={"position" in item ? (item.position as string) : ""}
-                onClick={()=>openItem(item)}
-                >
-                    <img src={item.icon} alt={item.name} />
-                    <p>{item.name}</p>
-
-                </li>
+                onClick={() => openItem(item)}
+              >
+                <img src={item.icon} alt={item.name} />
+                <p>{item.name}</p>
+              </li>
             ))}
-
         </ul>
-
       </div>
     </>
   );

@@ -22,7 +22,11 @@ function Image() {
 
       <div className="p-5 bg-white">
         {data.imageUrl && (
-          <img src={data.imageUrl} alt={data.name} className="w-full h-auto max-h-[70vh] object-contain rounded" />
+          <img
+            src={data.imageUrl}
+            alt={data.name}
+            className="w-full h-auto max-h-[70vh] object-contain rounded"
+          />
         )}
       </div>
     </>

@@ -19,9 +19,9 @@ const useLocationStore = create<LocationState>()(
     immer((set)=>({
         activeLocation: DEFAULT_LOCATION,
 
-        setActiveLocation: (location)=>
+        setActiveLocation: (location = null)=>
             set((state)=>{
-                if(location === undefined) return;
+                // if(location === undefined) return;
                 state.activeLocation=location;
             }),
         

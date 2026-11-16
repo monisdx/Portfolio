@@ -10,7 +10,7 @@ import Resume from "./windows/Resume";
 import Finder from "./windows/Finder";
 import Text from "./windows/Text";
 import Image from "./windows/Image";
-import { Contact } from "lucide-react";
+import Contact from "./windows/Contact";
 import Home from "./components/Home";
 import Photos from "./windows/Photos";
 
@@ -19,20 +19,20 @@ gsap.registerPlugin(Draggable, useGSAP);
 export default function App() {
   return (
     <main>
-      <Navbar/>
-      <Welcome/>
-      <Dock/>
+      <Navbar />
+      <Welcome />
+      <Dock />
 
-      <Terminal/>
-      <Safari/>
-      <Resume/>
-      <Finder/>
-      <Text/>
-      <Image/>
-      <Contact/>
-      <Photos/>
-      
-      <Home/>
+      <Terminal />
+      <Safari />
+      <Resume />
+      <Finder />
+      <Text />
+      <Image />
+      <Contact />
+      <Photos />
+
+      <Home />
     </main>
-  )
+  );
 }
